@@ -1,0 +1,21 @@
+development:
+  adapter:    postgresql
+  host:       localhost
+  database:   development_1
+  timeout:    5433
+  encoding:   utf8
+  port:       5433
+  pool:       5
+  username:   postgres
+  password:   postgres
+
+test:
+  adapter:    postgresql
+  host:       localhost
+  database:   test_1
+  timeout:    5433
+  encoding:   utf8
+  port:       5433
+  pool:       5
+  username:   postgres
+  password:   postgres
