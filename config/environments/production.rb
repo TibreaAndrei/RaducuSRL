@@ -94,12 +94,20 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
-  ActionMailer::Base.smtp_settings = {
-    :address  => "smtp.someserver.net",
-    :port  => 25,
-    :user_name  => "someone@someserver.net",
-    :password  => "mypass",
-    :authentication  => :login
+  mailertogo_host     = ENV.fetch("MAILERTOGO_SMTP_HOST")
+  mailertogo_port     = ENV.fetch("MAILERTOGO_SMTP_PORT", 587)
+  mailertogo_user     = ENV.fetch("MAILERTOGO_SMTP_USER")
+  mailertogo_password = ENV.fetch("MAILERTOGO_SMTP_PASSWORD")
+  mailertogo_domain   = ENV.fetch("MAILERTOGO_DOMAIN", "mydomain.com")
+
+  config.action_mailer.smtp_settings = {
+    :address              => mailertogo_host,
+    :port                 => mailertogo_port,
+    :user_name            => mailertogo_user,
+    :password             => mailertogo_password,
+    :domain               => mailertogo_domain,
+    :authentication       => :plain,
+    :enable_starttls_auto => true,
   }
 
   # Inserts middleware to perform automatic connection switching.
