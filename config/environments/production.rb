@@ -91,8 +91,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
+
 
   mailertogo_host     = ENV.fetch("MAILERTOGO_SMTP_HOST")
   mailertogo_port     = ENV.fetch("MAILERTOGO_SMTP_PORT", 587)
@@ -107,8 +106,10 @@ Rails.application.configure do
     :password             => mailertogo_password,
     :domain               => mailertogo_domain,
     :authentication       => :plain,
-    :enable_starttls_auto => true,
+    :enable_starttls_auto => true
   }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
 
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
